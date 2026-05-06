@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
 type FormState = "idle" | "submitting" | "done";
@@ -23,14 +24,29 @@ export default function ContactPage() {
   return (
     <>
       {/* ── Header ──────────────────────────────────────── */}
-      <section className="pt-48 pb-24 bg-bw-black">
-        <FadeIn className="container-xl px-6 md:px-14 lg:px-24">
+      <section className="relative pt-48 pb-0 bg-bw-black overflow-hidden">
+        <FadeIn className="container-xl px-6 md:px-14 lg:px-24 pb-20 relative z-10">
           <p className="eyebrow mb-6">Contact</p>
           <h1 className="h1 text-bw-white max-w-2xl">
             Come find<br />
             <span className="italic font-light">us.</span>
           </h1>
         </FadeIn>
+
+        {/* Banner image */}
+        <div className="relative w-full overflow-hidden" style={{ height: "clamp(260px, 45vh, 560px)" }}>
+          <Image
+            src="/images/493406476_1303909578401854_5805577515556471217_n.jpg"
+            alt="Black+White brownie sundae"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0" style={{
+            background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.3) 30%, rgba(8,8,8,0.3) 70%, #080808 100%)"
+          }} />
+        </div>
       </section>
 
       {/* ── Contact info + Map ──────────────────────────── */}

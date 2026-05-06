@@ -47,8 +47,8 @@ export default function MenuPage() {
   return (
     <>
       {/* ── Header ──────────────────────────────────────── */}
-      <section className="relative pt-48 pb-28 bg-bw-black overflow-hidden">
-        <FadeIn className="container-xl px-6 md:px-14 lg:px-24">
+      <section className="relative pt-48 pb-0 bg-bw-black overflow-hidden">
+        <FadeIn className="container-xl px-6 md:px-14 lg:px-24 pb-20 relative z-10">
           <p className="eyebrow mb-6">The Menu</p>
           <h1 className="h1 text-bw-white max-w-2xl">
             Everything<br />
@@ -60,6 +60,21 @@ export default function MenuPage() {
             seasonally — call us to confirm today&apos;s selections.
           </p>
         </FadeIn>
+
+        {/* Banner image */}
+        <div className="relative w-full overflow-hidden" style={{ height: "clamp(260px, 45vh, 560px)" }}>
+          <Image
+            src="/images/596963348_1514122307380579_4184674621993084385_n.jpg"
+            alt="Cream pies"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0" style={{
+            background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.3) 30%, rgba(8,8,8,0.3) 70%, #080808 100%)"
+          }} />
+        </div>
       </section>
 
       {/* ── Categories ──────────────────────────────────── */}

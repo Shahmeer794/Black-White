@@ -38,8 +38,8 @@ export default function AboutPage() {
           </h1>
         </FadeIn>
 
-        {/* Full-bleed image */}
-        <div className="relative w-full overflow-hidden" style={{ height: "clamp(300px, 55vh, 680px)" }}>
+        {/* Banner image */}
+        <div className="relative w-full overflow-hidden" style={{ height: "clamp(260px, 45vh, 560px)" }}>
           <Image
             src="/images/473569220_1136751281498596_4169320267146507040_n.jpg"
             alt="Black+White Creamery interior"
@@ -49,7 +49,7 @@ export default function AboutPage() {
             className="object-cover"
           />
           <div className="absolute inset-0" style={{
-            background: "linear-gradient(to bottom, #080808 0%, transparent 20%, transparent 70%, #080808 100%)"
+            background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.3) 30%, rgba(8,8,8,0.3) 70%, #080808 100%)"
           }} />
         </div>
       </section>
