@@ -131,7 +131,7 @@ export default function ContactPage() {
                   height="100%"
                   style={{
                     border: 0,
-                    filter: "grayscale(100%) brightness(0.5) contrast(1.1)",
+                    filter: "brightness(0.9) contrast(1.05) saturate(0.9)",
                     display: "block",
                   }}
                   allowFullScreen
