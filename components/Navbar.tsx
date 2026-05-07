@@ -56,10 +56,10 @@ export default function Navbar() {
               />
             </div>
             <div className="hidden sm:flex flex-col gap-[3px]">
-              <span className="font-serif font-light text-[0.95rem] tracking-[0.18em] uppercase text-bw-white leading-none">
+              <span className="font-serif font-medium text-[0.95rem] tracking-[0.18em] uppercase text-bw-white leading-none">
                 Black<span className="text-bw-muted mx-0.5">+</span>White
               </span>
-              <span className="font-sans font-light text-[0.55rem] tracking-[0.38em] uppercase text-bw-muted leading-none">
+              <span className="font-sans font-medium text-[0.55rem] tracking-[0.38em] uppercase text-bw-muted leading-none">
                 Modern Creamery
               </span>
             </div>

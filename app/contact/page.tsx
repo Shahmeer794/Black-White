@@ -1,11 +1,44 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
+type FormState = "idle" | "submitting" | "done";
+
 export default function ContactPage() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", party: "", message: "" });
+  const [status, setStatus] = useState<FormState>("idle");
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    /* Simulate submission — wire to your backend / Formspree / EmailJS as needed */
+    setTimeout(() => setStatus("done"), 1200);
+  }
+
   return (
     <>
       {/* ── Header ──────────────────────────────────────── */}
-      <section className="pt-48 pb-24 bg-bw-black">
-        <FadeIn className="container-xl px-6 md:px-14 lg:px-24">
+      <section className="relative min-h-[80vh] flex items-end bg-bw-black overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/images/493406476_1303909578401854_5805577515556471217_n.jpg"
+          alt="Black+White brownie sundae"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.55) 40%, rgba(8,8,8,0.45) 60%, #080808 100%)"
+        }} />
+        {/* Text */}
+        <FadeIn className="relative z-10 container-xl px-6 md:px-14 lg:px-24 pt-48 pb-24">
           <p className="eyebrow mb-6">Contact</p>
           <h1 className="h1 text-bw-white max-w-2xl">
             Come find<br />
@@ -14,7 +47,7 @@ export default function ContactPage() {
         </FadeIn>
       </section>
 
-      {/* ── Main content ────────────────────────────────── */}
+      {/* ── Contact info + Map ──────────────────────────── */}
       <section className="section-pad bg-bw-black border-t border-bw-dim/40">
         <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
 
@@ -99,7 +132,7 @@ export default function ContactPage() {
             </div>
           </FadeIn>
 
-          {/* Right — map */}
+          {/* Right — map (no API key, free embed) */}
           <FadeIn direction="left" delay={0.15}>
             <div className="flex flex-col gap-4">
               <div
@@ -107,12 +140,12 @@ export default function ContactPage() {
                 style={{ height: "clamp(340px, 55vh, 600px)" }}
               >
                 <iframe
-                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Black+White+Modern+Creamery+San+Antonio+TX&zoom=15"
+                  src="https://maps.google.com/maps?q=Black+White+Modern+Creamery+San+Antonio+TX&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{
                     border: 0,
-                    filter: "grayscale(100%) brightness(0.35) contrast(1.2)",
+                    filter: "brightness(0.9) contrast(1.05) saturate(0.9)",
                     display: "block",
                   }}
                   allowFullScreen
@@ -134,8 +167,157 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── Hours note ──────────────────────────────────── */}
+      {/* ── Booking Form ─────────────────────────────────── */}
       <section className="section-pad bg-bw-gray border-t border-bw-dim/40">
+        <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+
+          {/* Left — heading */}
+          <FadeIn direction="right">
+            <div className="flex flex-col gap-7 lg:sticky lg:top-36">
+              <p className="eyebrow">Reservations & Enquiries</p>
+              <h2 className="h2 text-bw-white">
+                Book a<br />
+                <span className="italic font-light">table or event.</span>
+              </h2>
+              <div className="rule ml-0" />
+              <p className="body-lg max-w-xs">
+                Planning a birthday, private event, or just want to reserve a
+                spot? Fill out the form and we&apos;ll get back to you promptly.
+              </p>
+              <p className="body-sm">
+                Prefer to call?{" "}
+                <a href="tel:+12102331811" className="text-bw-white hover:text-bw-subtle transition-colors duration-600 underline underline-offset-4 decoration-bw-dim">
+                  +1 210-233-1811
+                </a>
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Right — form */}
+          <FadeIn direction="left" delay={0.15}>
+            {status === "done" ? (
+              <div className="border border-bw-dim/60 p-12 flex flex-col gap-5">
+                <svg className="w-8 h-8 text-bw-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 13l4 4L19 7" />
+                </svg>
+                <h3 className="font-serif font-light text-2xl text-bw-white">Request received.</h3>
+                <p className="body-sm">We&apos;ll be in touch within 24 hours. Thank you.</p>
+                <button
+                  onClick={() => { setStatus("idle"); setForm({ name: "", email: "", phone: "", date: "", party: "", message: "" }); }}
+                  className="btn-ghost self-start mt-4"
+                >
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-0 border border-bw-dim/60">
+
+                {/* Name + Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-bw-dim/60">
+                  <div className="flex flex-col gap-1.5 p-6">
+                    <label className="eyebrow text-bw-muted/70">Full Name *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="bg-transparent font-sans font-light text-sm text-bw-white placeholder:text-bw-muted/40 outline-none border-none w-full"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5 p-6 border-t border-bw-dim/60 sm:border-t-0">
+                    <label className="eyebrow text-bw-muted/70">Email *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="your@email.com"
+                      className="bg-transparent font-sans font-light text-sm text-bw-white placeholder:text-bw-muted/40 outline-none border-none w-full"
+                    />
+                  </div>
+                </div>
+
+                {/* Phone + Date */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-bw-dim/60 border-t border-bw-dim/60">
+                  <div className="flex flex-col gap-1.5 p-6">
+                    <label className="eyebrow text-bw-muted/70">Phone</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="+1 (___) ___-____"
+                      className="bg-transparent font-sans font-light text-sm text-bw-white placeholder:text-bw-muted/40 outline-none border-none w-full"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5 p-6 border-t border-bw-dim/60 sm:border-t-0">
+                    <label className="eyebrow text-bw-muted/70">Preferred Date</label>
+                    <input
+                      type="date"
+                      name="date"
+                      value={form.date}
+                      onChange={handleChange}
+                      className="bg-transparent font-sans font-light text-sm text-bw-white placeholder:text-bw-muted/40 outline-none border-none w-full [color-scheme:dark]"
+                    />
+                  </div>
+                </div>
+
+                {/* Party size */}
+                <div className="border-t border-bw-dim/60">
+                  <div className="flex flex-col gap-1.5 p-6">
+                    <label className="eyebrow text-bw-muted/70">Party Size</label>
+                    <select
+                      name="party"
+                      value={form.party}
+                      onChange={handleChange}
+                      className="bg-transparent font-sans font-light text-sm text-bw-white outline-none border-none w-full appearance-none cursor-pointer"
+                    >
+                      <option value="" disabled className="bg-bw-gray text-bw-white">Select size</option>
+                      <option value="1-2"   className="bg-bw-gray text-bw-white">1 – 2 guests</option>
+                      <option value="3-5"   className="bg-bw-gray text-bw-white">3 – 5 guests</option>
+                      <option value="6-10"  className="bg-bw-gray text-bw-white">6 – 10 guests</option>
+                      <option value="11-20" className="bg-bw-gray text-bw-white">11 – 20 guests</option>
+                      <option value="20+"   className="bg-bw-gray text-bw-white">20+ guests (private event)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="border-t border-bw-dim/60">
+                  <div className="flex flex-col gap-1.5 p-6">
+                    <label className="eyebrow text-bw-muted/70">Message</label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      rows={4}
+                      placeholder="Tell us about your visit, event, or any special requests…"
+                      className="bg-transparent font-sans font-light text-sm text-bw-white placeholder:text-bw-muted/40 outline-none border-none w-full resize-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Submit */}
+                <div className="border-t border-bw-dim/60 p-6">
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="btn-solid w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {status === "submitting" ? "Sending…" : "Send Request"}
+                  </button>
+                </div>
+              </form>
+            )}
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ── Hours note ──────────────────────────────────── */}
+      <section className="section-pad bg-bw-black border-t border-bw-dim/40">
         <FadeIn className="container-xl max-w-lg">
           <p className="eyebrow mb-6">Hours</p>
           <h2 className="h2 text-bw-white mb-8">

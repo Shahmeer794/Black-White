@@ -30,8 +30,21 @@ export default function GalleryPage() {
   return (
     <>
       {/* ── Header ──────────────────────────────────────── */}
-      <section className="pt-48 pb-24 bg-bw-black">
-        <FadeIn className="container-xl px-6 md:px-14 lg:px-24">
+      <section className="relative min-h-[80vh] flex items-end bg-bw-black overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/images/124100673_142956564211411_6878156377720542027_n.jpg"
+          alt="Black+White branded cup"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.55) 40%, rgba(8,8,8,0.45) 60%, #080808 100%)"
+        }} />
+        {/* Text */}
+        <FadeIn className="relative z-10 container-xl px-6 md:px-14 lg:px-24 pt-48 pb-24">
           <p className="eyebrow mb-6">Gallery</p>
           <h1 className="h1 text-bw-white max-w-2xl">
             Every scoop,<br />

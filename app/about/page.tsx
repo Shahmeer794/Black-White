@@ -29,29 +29,27 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Header ──────────────────────────────────────── */}
-      <section className="relative pt-48 pb-0 bg-bw-black overflow-hidden">
-        <FadeIn className="container-xl px-6 md:px-14 lg:px-24 pb-24">
+      <section className="relative min-h-[80vh] flex items-end bg-bw-black overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/images/473569220_1136751281498596_4169320267146507040_n.jpg"
+          alt="Black+White Creamery interior"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.55) 40%, rgba(8,8,8,0.45) 60%, #080808 100%)"
+        }} />
+        {/* Text */}
+        <FadeIn className="relative z-10 container-xl px-6 md:px-14 lg:px-24 pt-48 pb-24">
           <p className="eyebrow mb-6">About Us</p>
           <h1 className="h1 text-bw-white max-w-3xl">
             A different kind<br />
             <span className="italic font-light">of creamery.</span>
           </h1>
         </FadeIn>
-
-        {/* Full-bleed image */}
-        <div className="relative w-full overflow-hidden" style={{ height: "clamp(300px, 55vh, 680px)" }}>
-          <Image
-            src="/images/473569220_1136751281498596_4169320267146507040_n.jpg"
-            alt="Black+White Creamery interior"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0" style={{
-            background: "linear-gradient(to bottom, #080808 0%, transparent 20%, transparent 70%, #080808 100%)"
-          }} />
-        </div>
       </section>
 
       {/* ── Story ───────────────────────────────────────── */}
