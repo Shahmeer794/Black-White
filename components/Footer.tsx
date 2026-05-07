@@ -31,7 +31,7 @@ export default function Footer() {
                 <span className="font-serif font-light text-[0.9rem] tracking-[0.18em] uppercase text-bw-white leading-none">
                   Black<span className="text-bw-muted mx-0.5">+</span>White
                 </span>
-                <span className="font-sans font-light text-[0.54rem] tracking-[0.36em] uppercase text-bw-muted leading-none">
+                <span className="font-sans font-light text-[0.54rem] tracking-[0.36em] uppercase text-bw-subtle leading-none">
                   Modern Creamery
                 </span>
               </div>
