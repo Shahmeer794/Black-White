@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
-
+// Footer component with brand, navigation, contact info, and social links
 export default function Footer() {
   return (
     <footer className="bg-bw-gray border-t border-bw-gray-mid/50">
