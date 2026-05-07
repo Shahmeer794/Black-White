@@ -59,7 +59,7 @@ export default function Navbar() {
               <span className="font-serif font-medium text-[0.95rem] tracking-[0.18em] uppercase text-bw-white leading-none">
                 Black<span className="text-bw-muted mx-0.5">+</span>White
               </span>
-              <span className="font-sans font-medium text-[0.55rem] tracking-[0.38em] uppercase text-bw-muted leading-none">
+              <span className="font-sans font-medium text-[0.55rem] tracking-[0.38em] uppercase text-bw-subtle leading-none">
                 Modern Creamery
               </span>
             </div>
@@ -74,7 +74,7 @@ export default function Navbar() {
                 className={`font-sans font-light text-[0.62rem] tracking-[0.32em] uppercase transition-colors duration-600 relative group ${
                   pathname === link.href
                     ? "text-bw-white"
-                    : "text-bw-muted hover:text-bw-subtle"
+                    : "text-bw-subtle hover:text-bw-white"
                 }`}
               >
                 {link.label}

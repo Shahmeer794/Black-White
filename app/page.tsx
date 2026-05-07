@@ -99,7 +99,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 1.0 }}
-            className="font-sans font-light text-[0.58rem] tracking-[0.5em] uppercase text-bw-muted mt-4 mb-12"
+            className="font-sans font-light text-[0.58rem] tracking-[0.5em] uppercase text-bw-subtle mt-4 mb-12"
           >
             Modern Creamery
           </motion.p>
@@ -109,7 +109,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 1.2 }}
-            className="font-serif font-light italic text-[1.25rem] md:text-[1.5rem] text-bw-subtle/70 max-w-md mx-auto mb-14 leading-[1.6]"
+            className="font-serif font-light italic text-[1.25rem] md:text-[1.5rem] text-bw-subtle max-w-md mx-auto mb-14 leading-[1.6]"
           >
             Where luxury meets flavor.
           </motion.p>

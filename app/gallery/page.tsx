@@ -63,7 +63,7 @@ export default function GalleryPage() {
               className={`font-sans font-light text-[0.6rem] tracking-[0.32em] uppercase whitespace-nowrap transition-colors duration-500 pb-[3px] border-b ${
                 active === cat
                   ? "text-bw-white border-bw-white"
-                  : "text-bw-muted border-transparent hover:text-bw-subtle"
+                  : "text-bw-subtle border-transparent hover:text-bw-white"
               }`}
             >
               {cat}

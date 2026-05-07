@@ -27,7 +27,7 @@ export default function ContactPage() {
       <section className="relative min-h-[80vh] flex items-end bg-bw-black overflow-hidden">
         {/* Background image */}
         <Image
-          src="/images/493406476_1303909578401854_5805577515556471217_n.jpg"
+          src="/images/587714844_1498384658954344_8942536259378986225_n.jpg"
           alt="Black+White brownie sundae"
           fill
           priority
